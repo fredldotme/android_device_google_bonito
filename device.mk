@@ -121,8 +121,8 @@ MASTER_SIDE_CP_TARGET_LIST := sdm710 # ION specific settings
 PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
-    update_engine \
     update_verifier
+#    update_engine
 
 # Use Sdcardfs
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -161,13 +161,14 @@ PRODUCT_STATIC_BOOT_CONTROL_HAL := \
     libcutils
 
 PRODUCT_PACKAGES += \
-    update_engine_sideload \
     sg_write_buffer
+#    update_engine_sideload \
+
 
 # The following modules are included in debuggable builds only.
 PRODUCT_PACKAGES_DEBUG += \
-    bootctl \
-    update_engine_client
+    bootctl
+#    update_engine_client
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -799,3 +800,26 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # Increment the SVN for any official public releases
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.vendor.build.svn=2
+
+# systemimage build fix
+PRODUCT_PACKAGES += \
+	fec
+
+# Ubuntu Touch Mir/hybris integration & multimedia playback support
+PRODUCT_PACKAGES += \
+    libmedia_compat_layer \
+    libubuntu_application_api \
+    libdroidmedia \
+    libaudioflingerglue \
+    libminisf \
+    miniafservice \
+    minimediaservice
+
+# Ubuntu Touch/Halium override files
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/system/halium/lib/udev/rules.d/70-android.rules:system/halium/lib/udev/rules.d/70-android.rules \
+    $(LOCAL_PATH)/rootdir/system/halium/etc/ubuntu-touch-session.d/android.conf:system/halium/etc/ubuntu-touch-session.d/android.conf
+
+# Ubuntu Touch additional properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    ubuntu.widi.supported=1

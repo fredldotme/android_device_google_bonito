@@ -43,7 +43,8 @@ BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/firmware
 BOARD_KERNEL_CMDLINE += cgroup.memory=nokmem
 # STOPSHIP Bringup hack- no low power
 BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
-BOARD_KERNEL_CMDLINE += loop.max_part=7
+#BOARD_KERNEL_CMDLINE += loop.max_part=7
+BOARD_KERNEL_CMDLINE += datapart=/dev/mmcblk0p72
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
@@ -77,10 +78,12 @@ TARGET_RECOVERY_FSTAB := device/google/bonito/fstab.hardware
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_RECOVERY_UI_LIB := \
   librecovery_ui_bonito \
+  libnos_for_recovery \
   libnos_citadel_for_recovery \
-  libnos_for_recovery
+  libnos_transport
 
 BOARD_AVB_ENABLE := true
+BOARD_BUILD_DISABLED_VBMETAIMAGE := true
 BOARD_AVB_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 
 # Enable chain partition for system.
