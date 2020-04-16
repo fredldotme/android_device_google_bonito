@@ -805,20 +805,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
 	fec
 
-# Ubuntu Touch Mir/hybris integration & multimedia playback support
+# Misc libraries
 PRODUCT_PACKAGES += \
-    libmedia_compat_layer \
-    libubuntu_application_api \
-    libdroidmedia \
-    libaudioflingerglue \
-    libminisf \
-    miniafservice \
-    minimediaservice
+	libxml2
 
 # Ubuntu Touch/Halium override files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/lib/udev/rules.d/70-android.rules:system/halium/lib/udev/rules.d/70-android.rules \
-    $(LOCAL_PATH)/rootdir/system/halium/etc/ubuntu-touch-session.d/android.conf:system/halium/etc/ubuntu-touch-session.d/android.conf
+    $(LOCAL_PATH)/rootdir/system/halium/etc/ubuntu-touch-session.d/android.conf:system/halium/etc/ubuntu-touch-session.d/android.conf \
+    $(LOCAL_PATH)/rootdir/system/halium/etc/ofono/ril_subscription.conf:system/halium/etc/ofono/ril_subscription.conf
 
 # Ubuntu Touch additional properties
 PRODUCT_PROPERTY_OVERRIDES += \
