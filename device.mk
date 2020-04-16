@@ -813,6 +813,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/lib/udev/rules.d/70-android.rules:system/halium/lib/udev/rules.d/70-android.rules \
     $(LOCAL_PATH)/rootdir/system/halium/etc/ubuntu-touch-session.d/android.conf:system/halium/etc/ubuntu-touch-session.d/android.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/init/on-post-fs.rc:system/etc/init/on-post-fs.rc \
+    $(LOCAL_PATH)/rootdir/system/system/bin/on-post-fs-data.sh:system/bin/on-post-fs-data.sh \
     $(LOCAL_PATH)/rootdir/system/halium/etc/ofono/ril_subscription.conf:system/halium/etc/ofono/ril_subscription.conf
 
 # Ubuntu Touch additional properties
