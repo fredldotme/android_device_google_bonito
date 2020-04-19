@@ -1,2 +1,5 @@
 on post-fs-data
     exec - root -- /system/bin/sh /system/bin/on-post-fs-data.sh
+
+on property:init.svc.vendor.hwcomposer-2-2=running
+    stop ppd
