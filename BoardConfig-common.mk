@@ -229,4 +229,7 @@ BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/b4s4-setup.sh
 # Single vendor RIL with SDM845
 BOARD_USES_SDM845_QCRIL := true
 
+# libmedia_compat_layer for 64bit
+HYBRIS_MEDIA_32_BIT_ONLY := false
+
 -include vendor/google_devices/bonito/proprietary/BoardConfigVendor.mk

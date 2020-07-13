@@ -404,12 +404,13 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libc2dcolorconvert
 
-# Enable Codec 2.0
+# Media
 PRODUCT_PACKAGES += \
-    libmedia_codecserviceregistrant \
-    libqcodec2 \
-    libstagefright_ccodec \
-    vendor.qti.media.c2@1.0-service \
+    libmedia_omx \
+    android.frameworks.displayservice@1.0 \
+    drmserver \
+    mediadrmserver \
+    mediaextractor
 
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
@@ -809,14 +810,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	libxml2
 
+PRODUCT_PACKAGES += \
+	libmedia_compat_layer
+
 # Ubuntu Touch/Halium override files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/lib/udev/rules.d/70-android.rules:system/halium/lib/udev/rules.d/70-android.rules \
     $(LOCAL_PATH)/rootdir/system/halium/etc/ubuntu-touch-session.d/android.conf:system/halium/etc/ubuntu-touch-session.d/android.conf \
     $(LOCAL_PATH)/rootdir/system/etc/init/on-post-fs.rc:system/etc/init/on-post-fs.rc \
     $(LOCAL_PATH)/rootdir/system/bin/on-post-fs-data.sh:system/bin/on-post-fs-data.sh \
-    $(LOCAL_PATH)/rootdir/system/halium/etc/ofono/ril_subscription.conf:system/halium/etc/ofono/ril_subscription.conf \
-    $(LOCAL_PATH)/rootdir/system/halium/etc/sensorfw/sensord.conf.d/sensord.conf:system/halium/etc/sensorfw/sensord.conf.d/sensord.conf
+    $(LOCAL_PATH)/rootdir/system/halium/etc/ofono/ril_subscription.conf:system/halium/etc/ofono/ril_subscription.conf
 
 # Ubuntu Touch additional properties
 PRODUCT_PROPERTY_OVERRIDES += \
