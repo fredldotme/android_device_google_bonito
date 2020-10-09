@@ -2,6 +2,10 @@ on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
+on post-fs-data
+    start setup_fake_cache
+    wait_for_prop halium.datamount.done 1
+
 on init
     mount configfs none /config
     mkdir /config/usb_gadget/g1 0770 shell shell
@@ -24,3 +28,10 @@ on property:sys.usb.ffs.ready=1
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "adb"
     symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
     write /config/usb_gadget/g1/UDC "a600000.dwc3"
+
+service setup_adbd /sbin/sh /setup_adbd.sh
+    disabled
+
+service setup_fake_cache /sbin/sh /setup_fake_cache.sh
+    disabled
+    oneshot
