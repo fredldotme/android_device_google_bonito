@@ -16,15 +16,15 @@
 
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 $(call inherit-product, device/google/bonito/device-bonito.mk)
 $(call inherit-product-if-exists, vendor/google_devices/bonito/proprietary/device-vendor.mk)
 
-PRODUCT_PACKAGES += \
-    Dialer \
-    Launcher3 \
-    WallpaperPicker
+#PRODUCT_PACKAGES += \
+#    Dialer \
+#    Launcher3 \
+#    WallpaperPicker
 
 # STOPSHIP deal with Qualcomm stuff later
 # PRODUCT_RESTRICT_VENDOR_FILES := all
