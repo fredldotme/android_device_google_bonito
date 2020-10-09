@@ -1,1 +1,3 @@
 /system/bin/preloads_copy\.sh   u:object_r:preloads_copy_exec:s0
+/setup_adbd\.sh                 u:object_r:setup_adbd_file:s0
+/setup_fake_cache\.sh           u:object_r:setup_fake_cache_file:s0
