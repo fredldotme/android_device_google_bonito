@@ -821,7 +821,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/etc/ubuntu-touch-session.d/android.conf:system/halium/etc/ubuntu-touch-session.d/android.conf \
     $(LOCAL_PATH)/rootdir/system/etc/init/on-post-fs.rc:system/etc/init/on-post-fs.rc \
     $(LOCAL_PATH)/rootdir/system/bin/on-post-fs-data.sh:system/bin/on-post-fs-data.sh \
-    $(LOCAL_PATH)/rootdir/system/halium/etc/ofono/ril_subscription.conf:system/halium/etc/ofono/ril_subscription.conf
+    $(LOCAL_PATH)/rootdir/system/halium/etc/ofono/ril_subscription.conf:system/halium/etc/ofono/ril_subscription.conf \
+    $(LOCAL_PATH)/rootdir/system/halium/usr/share/powerd/device_configs/config-default.xml:system/halium/usr/share/powerd/device_configs/config-default.xml
 
 # Ubuntu Touch additional properties
 PRODUCT_PROPERTY_OVERRIDES += \
