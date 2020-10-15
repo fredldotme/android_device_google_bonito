@@ -18,3 +18,4 @@
 /dev/block/zram0                                    none               swap        defaults                                              zramsize=1610612736,max_comp_streams=8
 /dev/block/bootdevice/by-name/boot                    /boot                      ext4    ro,barrier=1,discard                                 wait,slotselect,avb
 /dev/block/bootdevice/by-name/dtbo                    /dtbo                      ext4    ro,barrier=1,discard                                 wait,slotselect,avb
+/dev/block/bootdevice/by-name/vbmeta                  /vbmeta                    ext4    ro,barrier=1,discard                                 wait,slotselect,avb
