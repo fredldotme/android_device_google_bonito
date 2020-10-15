@@ -26,3 +26,8 @@ on property:init.svc.bugreport=running
 
 on property:init.svc.bugreport=stopped
     write /d/tracing/instances/pixel-trace/tracing_on 1
+
+service miniaf /system/bin/miniafservice
+    class main
+    user system
+    group audio
