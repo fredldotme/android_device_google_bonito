@@ -406,13 +406,12 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libc2dcolorconvert
 
-# Media
+# Enable Codec 2.0
 PRODUCT_PACKAGES += \
-    libmedia_omx \
-    android.frameworks.displayservice@1.0 \
-    drmserver \
-    mediadrmserver \
-    mediaextractor
+    libmedia_codecserviceregistrant \
+    libqcodec2 \
+    libstagefright_ccodec \
+    vendor.qti.media.c2@1.0-service \
 
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
