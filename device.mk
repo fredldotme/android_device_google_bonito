@@ -812,7 +812,8 @@ PRODUCT_PACKAGES += \
 	libxml2
 
 PRODUCT_PACKAGES += \
-	miniafservice
+	miniafservice \
+	uinput-fpc-key-disable
 
 # Ubuntu Touch/Halium override files
 PRODUCT_COPY_FILES += \

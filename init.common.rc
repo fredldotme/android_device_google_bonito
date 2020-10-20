@@ -31,3 +31,8 @@ service miniaf /system/bin/miniafservice
     class main
     user system
     group audio
+
+service uinput-fpc-key-disable /system/bin/uinput-fpc-key-disable
+    class main
+    user root
+    group root
