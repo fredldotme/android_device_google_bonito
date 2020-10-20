@@ -812,7 +812,7 @@ PRODUCT_PACKAGES += \
 	libxml2
 
 PRODUCT_PACKAGES += \
-	libmedia_compat_layer
+	miniafservice
 
 # Ubuntu Touch/Halium override files
 PRODUCT_COPY_FILES += \
