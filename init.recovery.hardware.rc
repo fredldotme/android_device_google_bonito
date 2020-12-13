@@ -29,9 +29,6 @@ on property:sys.usb.ffs.ready=1
     symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
     write /config/usb_gadget/g1/UDC "a600000.dwc3"
 
-service setup_adbd /sbin/sh /setup_adbd.sh
-    disabled
-
 service setup_fake_cache /sbin/sh /setup_fake_cache.sh
     disabled
     oneshot
