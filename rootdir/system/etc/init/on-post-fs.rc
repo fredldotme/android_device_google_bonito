@@ -9,7 +9,3 @@ on post-fs-data
 
 on property:init.svc.vendor.hwcomposer-2-2=running
     stop ppd
-
-on init
-    setprop ro.ril.power_collapse 0
-    setprop ro.ril.disable.power.collapse 1
