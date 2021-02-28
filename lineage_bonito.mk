@@ -3,10 +3,11 @@ TARGET_SCREEN_HEIGHT := 2160
 TARGET_SCREEN_WIDTH := 1080
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+#$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/google/bonito/aosp_bonito.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/halium.mk)
 
 -include device/google/bonito/bonito/device-lineage.mk
 
