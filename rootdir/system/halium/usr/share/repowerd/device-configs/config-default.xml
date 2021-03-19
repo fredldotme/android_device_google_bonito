@@ -165,8 +165,7 @@
             <item>3000</item>
             <item>5000</item>
             <item>10000</item>
-            <item>30000</item>
-</integer-array>
+    </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
          in the config_autoBrightnessLevels array.  This array should have size one greater
@@ -174,20 +173,20 @@
          The brightness values must be between 0 and 255 and be non-decreasing.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-            <item>3</item>   <!-- 0-5 -->
-            <item>6</item>   <!-- 5-15 -->
-            <item>16</item>   <!-- 15-50 -->
-            <item>38</item>   <!-- 50-100 -->
-            <item>48</item>   <!-- 100-200 -->
-            <item>55</item>   <!-- 200-400 -->
-            <item>64</item>   <!-- 400-1000 -->
-            <item>74</item>   <!-- 1000-2000 -->
-            <item>120</item>  <!-- 2000-3000 -->
-            <item>164</item>  <!-- 3000-5000 -->
-            <item>225</item>  <!-- 5000-10000 -->
-            <item>255</item>  <!-- 10000-30000 -->
-            <item>255</item>  <!-- 30000+ -->
+            <item>23</item>   <!-- 0-5 -->
+            <item>49</item>   <!-- 5-15 -->
+            <item>72</item>   <!-- 15-50 -->
+            <item>95</item>   <!-- 50-100 -->
+            <item>118</item>   <!-- 100-200 -->
+            <item>140</item>   <!-- 200-400 -->
+            <item>164</item>   <!-- 400-1000 -->
+            <item>185</item>   <!-- 1000-2000 -->
+            <item>204</item>  <!-- 2000-3000 -->
+            <item>228</item>  <!-- 3000-5000 -->
+            <item>234</item>  <!-- 5000-10000 -->
+            <item>255</item>  <!-- 10000+ -->
     </integer-array>
+
 
 
     <!-- MMS user agent string -->
