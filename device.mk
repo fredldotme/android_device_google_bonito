@@ -812,7 +812,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
 	miniafservice \
-	uinput-fpc-key-disable
+	uinput-fpc-key-disable \
+	powerswitch
 
 # Ubuntu Touch/Halium override files
 PRODUCT_COPY_FILES += \
@@ -824,10 +825,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/repowerd/device-configs/config-default.xml:system/halium/usr/share/repowerd/device-configs/config-default.xml \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/usbinit/setupusb:system/halium/usr/share/usbinit/setupusb \
     $(LOCAL_PATH)/rootdir/system/halium/etc/init/mtp-state.conf:system/halium/etc/init/mtp-state.conf \
-    $(LOCAL_PATH)/rootdir/system/halium/usr/share/upstart/sessions/mtp-server.conf:system/halium/usr/share/upstart/sessions/mtp-server.conf
-
-
+    $(LOCAL_PATH)/rootdir/system/halium/usr/share/upstart/sessions/mtp-server.conf:system/halium/usr/share/upstart/sessions/mtp-server.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/rqbalance_config.xml:system/etc/rqbalance_config.xml
 
 # Ubuntu Touch additional properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ubuntu.widi.supported=1
+
+# Enable libpowerswitch (RQBalance controller)
+PRODUCT_PROPERTY_OVERRIDES += \
+    ubuntu.booster.dl=/system/lib64/libpowerswitch.so \
+    ubuntu.booster.enable=set_screen_on \
+    ubuntu.booster.disable=set_screen_off

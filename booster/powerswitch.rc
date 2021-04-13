@@ -1,0 +1,3 @@
+service powerswitch /system/bin/powerswitch
+    class main
+    oneshot
