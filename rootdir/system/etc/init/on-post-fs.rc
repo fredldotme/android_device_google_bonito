@@ -9,3 +9,11 @@ on post-fs-data
 
 on property:init.svc.vendor.hwcomposer-2-2=running
     stop ppd
+
+on charger
+    start charger
+
+service charger /sbin/charger
+    class charger
+    group system graphics wakelock
+    capabilities BLOCK_SUSPEND SYS_ADMIN SYS_BOOT
