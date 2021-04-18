@@ -825,6 +825,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/repowerd/device-configs/config-default.xml:system/halium/usr/share/repowerd/device-configs/config-default.xml \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/usbinit/setupusb:system/halium/usr/share/usbinit/setupusb \
     $(LOCAL_PATH)/rootdir/system/halium/etc/init/mtp-state.conf:system/halium/etc/init/mtp-state.conf \
+    $(LOCAL_PATH)/rootdir/system/halium/vendor/lib64/hw/audio.primary.sdm710.so:system/halium/vendor/lib64/hw/audio.primary.sdm710.so \
     $(LOCAL_PATH)/rootdir/system/halium/vendor/etc/mixer_paths_intcodec_s4.xml:system/halium/vendor/etc/mixer_paths_intcodec_s4.xml \
     $(LOCAL_PATH)/rootdir/system/halium/etc/init/mount-android.conf:system/halium/etc/init/mount-android.conf \
     $(LOCAL_PATH)/rootdir/system/halium/etc/init/device-hacks.conf:system/halium/etc/init/device-hacks.conf \
