@@ -825,6 +825,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/repowerd/device-configs/config-default.xml:system/halium/usr/share/repowerd/device-configs/config-default.xml \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/usbinit/setupusb:system/halium/usr/share/usbinit/setupusb \
     $(LOCAL_PATH)/rootdir/system/halium/etc/init/mtp-state.conf:system/halium/etc/init/mtp-state.conf \
+    $(LOCAL_PATH)/rootdir/system/halium/etc/init/hfd-service.conf:system/halium/etc/init/hfd-service.conf \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/upstart/sessions/mtp-server.conf:system/halium/usr/share/upstart/sessions/mtp-server.conf \
     $(LOCAL_PATH)/rootdir/system/etc/rqbalance_config.xml:system/etc/rqbalance_config.xml
 
