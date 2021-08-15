@@ -6,6 +6,10 @@ on post-fs-data
     mkdir /data/system/users 0755 system system
     mkdir /data/system/users/0 0700 system system
     mkdir /data/system/users/0/fpdata 0700 system system
+    mkdir /data/vendor_ce
+    mkdir /data/vendor_ce/0
+    setprop sys.user.0.ce_available true
+    setprop ctl.restart vendor.ramoops_sh
 
 on property:init.svc.vendor.hwcomposer-2-2=running
     stop ppd
