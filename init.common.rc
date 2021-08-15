@@ -31,7 +31,13 @@ service miniaf /system/bin/miniafservice
     class main
     user system
     group audio
+on charger
+    start charger
 
+service charger /charger
+    class charger
+    group system wakelock
+    capabilities BLOCK_SUSPEND SYS_ADMIN SYS_BOOT
 service uinput-fpc-key-disable /system/bin/uinput-fpc-key-disable
     class main
     user root
