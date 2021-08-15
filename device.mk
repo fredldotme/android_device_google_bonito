@@ -829,6 +829,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/vendor/etc/mixer_paths_intcodec_s4.xml:system/halium/vendor/etc/mixer_paths_intcodec_s4.xml \
     $(LOCAL_PATH)/rootdir/system/halium/etc/init/mount-android.conf:system/halium/etc/init/mount-android.conf \
     $(LOCAL_PATH)/rootdir/system/halium/etc/init/device-hacks.conf:system/halium/etc/init/device-hacks.conf \
+    $(LOCAL_PATH)/rootdir/system/halium/etc/init/hfd-service.conf:system/halium/etc/init/hfd-service.conf \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/upstart/sessions/mtp-server.conf:system/halium/usr/share/upstart/sessions/mtp-server.conf \
     $(LOCAL_PATH)/rootdir/system/etc/rqbalance_config.xml:system/etc/rqbalance_config.xml
 
