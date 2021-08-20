@@ -40,6 +40,10 @@ PRODUCT_COPY_FILES += \
     device/google/bonito/default-permissions.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default-permissions/default-permissions.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.software.verified_boot.xml:system/etc/permissions/android.software.verified_boot.xml
+    
+# APN CONFIG   
+PRODUCT_COPY_FILES += \
+    vendor/lineage/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
 # Enforce privapp-permissions whitelist
 PRODUCT_PROPERTY_OVERRIDES += \
