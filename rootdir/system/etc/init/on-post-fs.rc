@@ -13,3 +13,15 @@ on post-fs-data
 
 on property:init.svc.vendor.hwcomposer-2-2=running
     stop ppd
+
+on property:init.svc.imsqmidaemon=running
+    stop imsqmidaemon
+
+on property:init.svc.imsdatadaemon=running
+    stop imsdatadaemon
+
+on property:init.svc.ims_rtp_daemon=running
+    stop ims_rtp_daemon
+
+on property:init.svc.imsrcsservice=running
+    stop imsrcsservice
