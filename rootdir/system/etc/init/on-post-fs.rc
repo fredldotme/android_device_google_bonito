@@ -1,3 +1,9 @@
+on boot
+    setprop persist.vendor.radio.mt_sms_ack 30
+    setprop persist.vendor.radio.manual_nw_rej_ct 1
+    setprop persist.rcs.supported 0
+    enable vendor.qcrild
+
 on post-fs
     setprop vendor.qcom.time.set true
 
