@@ -14,8 +14,36 @@ on post-fs-data
 on property:init.svc.vendor.hwcomposer-2-2=running
     stop ppd
 
+# Disable IMS services
+service imsqmidaemon imsqmidaemon_HALIUM_DISABLED
+   class main
+   user system
+   socket ims_qmid stream 0660 system radio
+   group radio log diag
+   disabled
+
+service imsdatadaemon imsdatadaemon_HALIUM_DISABLED
+   class main
+   user system
+   socket ims_datad stream 0660 system radio
+   group system wifi radio inet log
+   disabled
+
+service imsrcsservice imsrcsd_HALIUM_DISABLED
+   class main
+   user system
+   group radio diag inet log
+   disabled
+
+service ims_rtp_daemon ims_rtp_daemon_HALIUM_DISABLED
+   class main
+   user system
+   group radio diag inet log
+   disabled
+
 on property:init.svc.imsqmidaemon=running
     stop imsqmidaemon
+    setprop vendor.ims.QMI_DAEMON_STATUS ""
 
 on property:init.svc.imsdatadaemon=running
     stop imsdatadaemon
