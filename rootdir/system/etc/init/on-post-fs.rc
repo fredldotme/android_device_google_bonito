@@ -1,3 +1,6 @@
+on post-fs
+    setprop vendor.qcom.time.set true
+
 on post-fs-data
     exec - root -- /system/bin/sh /system/bin/on-post-fs-data.sh
     mkdir /data/vendor_de/0 0700 system system
@@ -39,4 +42,8 @@ on property:init.svc.ims_rtp_daemon=running
 
 on property:init.svc.imsrcsservice=running
     stop imsrcsservice
+
+# Disable time_daemon
+service time_daemon time_daemon_HALIUM_DISABLED
+    override
 
