@@ -16,30 +16,16 @@ on property:init.svc.vendor.hwcomposer-2-2=running
 
 # Disable IMS services
 service imsqmidaemon imsqmidaemon_HALIUM_DISABLED
-   class main
-   user system
-   socket ims_qmid stream 0660 system radio
-   group radio log diag
-   disabled
+    override
 
 service imsdatadaemon imsdatadaemon_HALIUM_DISABLED
-   class main
-   user system
-   socket ims_datad stream 0660 system radio
-   group system wifi radio inet log
-   disabled
+    override
 
 service imsrcsservice imsrcsd_HALIUM_DISABLED
-   class main
-   user system
-   group radio diag inet log
-   disabled
+    override
 
 service ims_rtp_daemon ims_rtp_daemon_HALIUM_DISABLED
-   class main
-   user system
-   group radio diag inet log
-   disabled
+    override
 
 on property:init.svc.imsqmidaemon=running
     stop imsqmidaemon
@@ -53,3 +39,4 @@ on property:init.svc.ims_rtp_daemon=running
 
 on property:init.svc.imsrcsservice=running
     stop imsrcsservice
+
