@@ -27,6 +27,14 @@ on property:init.svc.bugreport=running
 on property:init.svc.bugreport=stopped
     write /d/tracing/instances/pixel-trace/tracing_on 1
 
+on charger
+    start charger
+
+service charger /charger
+    class charger
+    group system wakelock
+    capabilities BLOCK_SUSPEND SYS_ADMIN SYS_BOOT
+
 service miniaf /system/bin/miniafservice
     class main
     user system
