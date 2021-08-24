@@ -40,10 +40,6 @@ PRODUCT_COPY_FILES += \
     device/google/bonito/default-permissions.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default-permissions/default-permissions.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.software.verified_boot.xml:system/etc/permissions/android.software.verified_boot.xml
-    
-# APN CONFIG   
-PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
 # Enforce privapp-permissions whitelist
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -826,13 +822,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/etc/init/on-post-fs.rc:system/etc/init/on-post-fs.rc \
     $(LOCAL_PATH)/rootdir/system/bin/on-post-fs-data.sh:system/bin/on-post-fs-data.sh \
     $(LOCAL_PATH)/rootdir/system/halium/etc/ofono/ril_subscription.conf:system/halium/etc/ofono/ril_subscription.conf \
-    $(LOCAL_PATH)/rootdir/system/halium/usr/share/repowerd/device-configs/config-default.xml:system/halium/usr/share/repowerd/device-configs/config-default.xml \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/usbinit/setupusb:system/halium/usr/share/usbinit/setupusb \
     $(LOCAL_PATH)/rootdir/system/halium/etc/init/mtp-state.conf:system/halium/etc/init/mtp-state.conf \
-    $(LOCAL_PATH)/rootdir/system/halium/vendor/lib64/hw/audio.primary.sdm710.so:system/halium/vendor/lib64/hw/audio.primary.sdm710.so \
-    $(LOCAL_PATH)/rootdir/system/halium/vendor/etc/mixer_paths_intcodec_s4.xml:system/halium/vendor/etc/mixer_paths_intcodec_s4.xml \
-    $(LOCAL_PATH)/rootdir/system/halium/etc/init/mount-android.conf:system/halium/etc/init/mount-android.conf \
-    $(LOCAL_PATH)/rootdir/system/halium/etc/init/device-hacks.conf:system/halium/etc/init/device-hacks.conf \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/upstart/sessions/mtp-server.conf:system/halium/usr/share/upstart/sessions/mtp-server.conf \
     $(LOCAL_PATH)/rootdir/system/etc/rqbalance_config.xml:system/etc/rqbalance_config.xml
 
