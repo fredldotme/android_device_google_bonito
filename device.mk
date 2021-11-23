@@ -812,7 +812,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
 	miniafservice \
-	uinput-fpc-key-disable \
 	powerswitch
 
 # Ubuntu Touch/Halium override files
