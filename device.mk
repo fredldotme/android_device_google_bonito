@@ -827,8 +827,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/etc/rqbalance_config.xml:system/etc/rqbalance_config.xml
 
 # Ubuntu Touch additional properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    ubuntu.widi.supported=1
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    ubuntu.widi.supported=1
 
 # Enable libpowerswitch (RQBalance controller)
 PRODUCT_PROPERTY_OVERRIDES += \
