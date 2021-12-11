@@ -29,8 +29,3 @@ on property:init.svc.bugreport=stopped
 
 on charger
     start vendor.charger
-
-service miniaf /system/bin/miniafservice
-    class main
-    user system
-    group audio
