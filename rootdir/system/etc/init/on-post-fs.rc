@@ -20,7 +20,6 @@ on boot
 
 on post-fs
     setprop vendor.qcom.time.set true
-    setprop debug.stagefright.ccodec 0
 
 on post-fs-data
     exec - root -- /system/bin/sh /system/bin/on-post-fs-data.sh
