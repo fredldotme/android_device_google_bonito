@@ -835,3 +835,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ubuntu.booster.dl=/system/lib64/libpowerswitch.so \
     ubuntu.booster.enable=set_screen_on \
     ubuntu.booster.disable=set_screen_off
+
+# Use speaker phone in combination with integrated mic
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.halium.speaker_plus_handsetmic=true
