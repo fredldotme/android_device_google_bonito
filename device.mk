@@ -839,3 +839,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Use speaker phone in combination with integrated mic
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.halium.speaker_plus_handsetmic=true
+
+# Enable interactive drawer blur in unity8
+PRODUCT_PROPERTY_OVERRIDES += \
+    ubuntu.unity8.interactive_blur=true
