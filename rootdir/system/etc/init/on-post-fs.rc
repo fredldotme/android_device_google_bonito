@@ -67,3 +67,8 @@ on property:init.svc.imsrcsservice=running
 service time_daemon time_daemon_HALIUM_DISABLED
     override
 
+# Disable Android audio HAL, PulseAudio is our alternative
+service vendor.audio-hal-2-0 android.hardware.audio@2.0-service_HYBRIS_DISABLED
+    disabled
+    oneshot
+    override
