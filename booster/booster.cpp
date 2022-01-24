@@ -51,6 +51,8 @@ static const string SYS_BALANCE_LVL = RQBALANCE_NODE + string("balance_level");
 static const string SYS_UPCORE_THRESH = RQBALANCE_NODE + string("nr_run_thresholds");
 static const string SYS_DNCORE_THRESH = RQBALANCE_NODE + string("nr_down_run_thresholds");
 
+static const string FPC_NODE_DEVICE_PREPARE = "/sys/devices/platform/soc/soc:fp_fpc1020/device_prepare";
+
 static const string RQBHAL_CONF_FILE = "/system/etc/rqbalance_config.xml";
 
 static bool param_perf_supported = true;
@@ -226,6 +228,7 @@ void set_screen_on(int) {
         return;
     }
     set_power_mode(POWER_MODE_BALANCED);
+    sysfs_write(FPC_NODE_DEVICE_PREPARE.c_str(), "enable");
 }
 
 void set_screen_off(int) {
@@ -234,5 +237,6 @@ void set_screen_off(int) {
         return;
     }
     set_power_mode(POWER_MODE_BATTERYSAVE);
+    sysfs_write(FPC_NODE_DEVICE_PREPARE.c_str(), "disable");
 }
 }
