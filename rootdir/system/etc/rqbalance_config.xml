@@ -16,7 +16,7 @@
 <rqbalance_config>
 
     <batterysave>
-        <cpuquiet min_cpus="1" max_cpus="3"/>
+        <cpuquiet min_cpus="2" max_cpus="2"/>
         <rqbalance balance_level="40"/>
         <rqbalance down_thresholds="0 120 300 380 420 490 530 670"/>
         <rqbalance   up_thresholds="200 400 500 530 590 620 730 4294967295"/>
