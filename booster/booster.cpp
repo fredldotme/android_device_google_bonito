@@ -53,7 +53,7 @@ static const string SYS_DNCORE_THRESH = RQBALANCE_NODE + string("nr_down_run_thr
 
 static const string FPC_NODE_DEVICE_PREPARE = "/sys/devices/platform/soc/soc:fp_fpc1020/device_prepare";
 
-static const string TOUCHSCREEN_RESET = "/sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/reset";
+static const string TOUCHSCREEN_RESET = "/sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/hw_reset";
 
 static const string RQBHAL_CONF_FILE = "/system/etc/rqbalance_config.xml";
 
