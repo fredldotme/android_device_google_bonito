@@ -53,6 +53,8 @@ static const string SYS_DNCORE_THRESH = RQBALANCE_NODE + string("nr_down_run_thr
 
 static const string FPC_NODE_DEVICE_PREPARE = "/sys/devices/platform/soc/soc:fp_fpc1020/device_prepare";
 
+static const string TOUCHSCREEN_RESET = "/sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/reset";
+
 static const string RQBHAL_CONF_FILE = "/system/etc/rqbalance_config.xml";
 
 static bool param_perf_supported = true;
@@ -229,6 +231,7 @@ void set_screen_on(int) {
     }
     set_power_mode(POWER_MODE_BALANCED);
     sysfs_write(FPC_NODE_DEVICE_PREPARE.c_str(), "enable");
+    sysfs_write(TOUCHSCREEN_RESET.c_str(), "1");
 }
 
 void set_screen_off(int) {
