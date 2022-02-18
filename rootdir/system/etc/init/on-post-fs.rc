@@ -39,6 +39,7 @@ on post-fs-data
     write /proc/sys/vm/dirty_ratio 40
     write /proc/sys/vm/admin_reserve_kbytes 16384
     write /proc/sys/vm/swappiness 80
+    write /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture 1
 
 on property:init.svc.vendor.hwcomposer-2-2=running
     stop ppd
