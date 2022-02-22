@@ -31,15 +31,17 @@ on post-fs-data
     mkdir /data/system/users/0/fpdata 0700 system system
     mkdir /data/vendor_ce
     mkdir /data/vendor_ce/0
+    setprop ro.qc.sdk.audio.fluencetype fluencepro
+    setprop persist.audio.fluence.voicecall true
+    setprop persist.audio.fluence.speaker true
     setprop sys.user.0.ce_available true
     setprop ctl.restart vendor.ramoops_sh
-    write /proc/sys/vm/min_free_kbytes 29620
-    write /proc/sys/vm/vfs_cache_pressure 200
-    write /proc/sys/vm/dirty_background_ratio 5
-    write /proc/sys/vm/dirty_ratio 40
-    write /proc/sys/vm/admin_reserve_kbytes 16384
-    write /proc/sys/vm/swappiness 80
+
+on property:persist.double_tap_to_wake=true
     write /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture 1
+
+on property:persist.double_tap_to_wake=false
+    write /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture 0
 
 on property:init.svc.vendor.hwcomposer-2-2=running
     stop ppd

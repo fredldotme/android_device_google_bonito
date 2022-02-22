@@ -839,3 +839,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Enable interactive drawer blur in unity8
 PRODUCT_PROPERTY_OVERRIDES += \
     ubuntu.unity8.interactive_blur=true
+
+# Enable Double-Tap-To-Wake by default
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.double_tap_to_wake=true
