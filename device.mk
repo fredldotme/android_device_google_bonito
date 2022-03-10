@@ -843,4 +843,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Enable Double-Tap-To-Wake by default
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.double_tap_to_wake=true
+    persist.double_tap_to_wake=false
