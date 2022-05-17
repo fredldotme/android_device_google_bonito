@@ -186,7 +186,7 @@
     },
     {
       "Name": "ForegroundCpuset",
-      "Path": "/dev/cpuset/foreground/cpus",
+      "Path": "/dev/cpuset/foreground/cpuset.cpus",
       "Values": [
         "0-5",
         "0-5,7"

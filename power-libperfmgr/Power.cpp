@@ -67,7 +67,7 @@ Power::Power()
     mInitThread =
             std::thread([this](){
                             android::base::WaitForProperty(kPowerHalInitProp, "1");
-                            mHintManager = HintManager::GetFromJSON("/vendor/etc/powerhint.json");
+                            mHintManager = HintManager::GetFromJSON("/system/etc/powerhint.json");
                             mInteractionHandler = std::make_unique<InteractionHandler>(mHintManager);
                             mInteractionHandler->Init();
                             std::string state = android::base::GetProperty(kPowerHalStateProp, "");

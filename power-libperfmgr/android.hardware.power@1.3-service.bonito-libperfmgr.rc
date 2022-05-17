@@ -1,7 +1,8 @@
-service vendor.power-hal-1-3 /vendor/bin/hw/android.hardware.power@1.3-service.bonito-libperfmgr
+service vendor.power-hal-1-3 /system/bin/hw/android.hardware.power@1.3-service.bonito-libperfmgr
     class hal
     user root
     group system
+    override
 
 # restart powerHAL when framework died
 on property:init.svc.zygote=restarting && property:vendor.powerhal.state=*
