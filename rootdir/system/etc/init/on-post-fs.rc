@@ -16,6 +16,7 @@ on boot
     setprop persist.vendor.radio.data_con_rprt ""
     setprop persist.vendor.radio.relay_oprt_change ""
     setprop persist.vendor.radio.no_wait_for_card ""
+    setprop debug.stagefright.ccodec 0
     enable vendor.qcrild
 
 on post-fs
