@@ -81,6 +81,10 @@ struct Power : public IPower {
     std::atomic<enum CameraStreamingMode> mCameraStreamingMode;
     std::atomic<bool> mReady;
     std::thread mInitThread;
+    PowerHint_1_3 mLastHint;
+    int32_t mLastData;
+    std::atomic<bool> mScreenOn;
+    std::atomic<bool> mIgnoreScreenOn;
 };
 
 }  // namespace implementation

@@ -23,6 +23,7 @@
 #include <android-base/strings.h>
 #include <android-base/stringprintf.h>
 
+#include <functional>
 #include <mutex>
 
 #include <utils/Log.h>
@@ -57,6 +58,30 @@ static const std::map<enum CameraStreamingMode, std::string> kCamStreamingHint =
     {CAMERA_STREAMING, "CAMERA_STREAMING"},
     {CAMERA_STREAMING_1080P, "CAMERA_STREAMING_1080P"},
     {CAMERA_STREAMING_4K, "CAMERA_STREAMING_4K"}};
+
+class RaiiExec {
+public:
+    RaiiExec(std::function<void()> func) {
+        mFunc = func;
+    }
+    ~RaiiExec() {
+        mFunc();
+    }
+private:
+    std::function<void()> mFunc;
+};
+
+#define ENSURE_HINT_SAVED() \
+    RaiiExec([=](){ \
+        if (data > 0) { \
+            mLastHint = (PowerHint_1_3)hint; \
+            mLastData = data; \
+        } \
+    });
+
+// On Ubuntu Touch repowerd/platform-api misuses setInteractive for screen on/off.
+// For the purpose of what we're trying to accomplish here "SUSTAINED_PERFORMANCE" fits well.
+const PowerHint_1_3 interactionHint = PowerHint_1_3::SUSTAINED_PERFORMANCE;
 
 Power::Power()
     : mHintManager(nullptr),
@@ -102,6 +127,11 @@ Power::Power()
                                 ALOGI("Initialize with EXPENSIVE_RENDERING on");
                                 mHintManager->DoHint("EXPENSIVE_RENDERING");
                             }
+
+                            mLastHint = (PowerHint_1_3)0;
+                            mLastData = 0;
+                            mScreenOn.store(true);
+
                             // Now start to take powerhint
                             mReady.store(true);
                         });
@@ -109,14 +139,45 @@ Power::Power()
 }
 
 // Methods from ::android::hardware::power::V1_0::IPower follow.
-Return<void> Power::setInteractive(bool /* interactive */)  {
+Return<void> Power::setInteractive(bool interactive) {
+    if (!isSupportedGovernor() || !mReady) {
+        return Void();
+    }
+
+    // Ignore screen state temporarily.
+    // This is because we use the same method for both screen state and for
+    // actual purposeful hints sent by other subsystems.
+    mIgnoreScreenOn.store(true);
+    RaiiExec([=](){ mIgnoreScreenOn.store(false); });
+
+    // Now we're free to save the screen state as we wish.
+    mScreenOn.store(interactive);
+
+    if (interactive) {
+        if (mLastHint != (PowerHint_1_3)0) {
+            powerHintAsync_1_3(mLastHint, mLastData);
+        } else {
+            powerHintAsync_1_3(interactionHint, 1);
+            mLastHint = interactionHint;
+            mLastData = 1;
+        }
+    } else {
+        if (mLastHint != (PowerHint_1_3)0) {
+            powerHintAsync_1_3(mLastHint, 0);
+        } else {
+            powerHintAsync_1_3(interactionHint, 0);
+        }
+    }
+
     return Void();
 }
 
 Return<void> Power::powerHint(PowerHint_1_0 hint, int32_t data) {
-    if (!isSupportedGovernor() || !mReady) {
+    if (!isSupportedGovernor() || !mReady || (!mIgnoreScreenOn && !mScreenOn)) {
         return Void();
     }
+
+    ENSURE_HINT_SAVED();
 
     switch(hint) {
         case PowerHint_1_0::INTERACTION:
@@ -179,6 +240,12 @@ Return<void> Power::powerHint(PowerHint_1_0 hint, int32_t data) {
             break;
 
     }
+
+    // If the power hint at hand is ended we should be able to sustain performance.
+    if (mScreenOn && data == 0) {
+        powerHintAsync_1_3(interactionHint, 1);
+    }
+
     return Void();
 }
 
@@ -331,9 +398,11 @@ Return<void> Power::powerHintAsync(PowerHint_1_0 hint, int32_t data) {
 
 // Methods from ::android::hardware::power::V1_2::IPower follow.
 Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
-    if (!isSupportedGovernor() || !mReady) {
+    if (!isSupportedGovernor() || !mReady || (!mIgnoreScreenOn && !mScreenOn)) {
         return Void();
     }
+
+    ENSURE_HINT_SAVED();
 
     switch(hint) {
         case PowerHint_1_2::AUDIO_LOW_LATENCY:
@@ -447,14 +516,21 @@ Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
         default:
             return powerHint(static_cast<PowerHint_1_0>(hint), data);
     }
+
+    if (mScreenOn && data == 0) {
+        powerHintAsync_1_3(interactionHint, 1);
+    }
+
     return Void();
 }
 
 // Methods from ::android::hardware::power::V1_3::IPower follow.
 Return<void> Power::powerHintAsync_1_3(PowerHint_1_3 hint, int32_t data) {
-    if (!isSupportedGovernor() || !mReady) {
+    if (!isSupportedGovernor() || !mReady || (!mIgnoreScreenOn && !mScreenOn)) {
         return Void();
     }
+
+    ENSURE_HINT_SAVED();
 
     if (hint == PowerHint_1_3::EXPENSIVE_RENDERING) {
         if (mSustainedPerfModeOn) {
@@ -478,6 +554,10 @@ Return<void> Power::powerHintAsync_1_3(PowerHint_1_3 hint, int32_t data) {
         }
     } else {
         return powerHintAsync_1_2(static_cast<PowerHint_1_2>(hint), data);
+    }
+
+    if (mScreenOn && data == 0) {
+        powerHintAsync_1_3(interactionHint, 1);
     }
 
     return Void();

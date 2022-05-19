@@ -1,4 +1,5 @@
 service vendor.power-hal-1-3 /system/bin/hw/android.hardware.power@1.3-service.bonito-libperfmgr
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
     class hal
     user root
     group system
