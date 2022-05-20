@@ -2,54 +2,51 @@
   "Nodes": [
     {
       "Name": "CPULittleClusterMaxFreq",
-      "Path": "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
+      "Path": "/sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq",
       "Values": [
-        "9999999",
         "1612800",
         "1516800",
-        "1209600"
+        "1209600",
+        "998400"
       ],
-      "DefaultIndex": 0,
-      "ResetOnInit": true
+      "DefaultIndex": 0
     },
     {
       "Name": "CPULittleClusterMinFreq",
-      "Path": "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq",
+      "Path": "/sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq",
       "Values": [
-        "9999999",
         "1612800",
         "1516800",
         "1324800",
         "1209600",
-        "576000"
-      ],
-      "ResetOnInit": true
+        "576000",
+        "300000"
+      ]
     },
     {
       "Name": "CPUBigClusterMaxFreq",
-      "Path": "/sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq",
+      "Path": "/sys/devices/system/cpu/cpufreq/policy6/scaling_max_freq",
       "Values": [
-        "9999999",
         "1996800",
         "1747200",
         "1536000",
-        "1363200"
+        "1363200",
+        "979200"
       ],
-      "DefaultIndex": 0,
-      "ResetOnInit": true
+      "DefaultIndex": 0
     },
     {
       "Name": "CPUBigClusterMinFreq",
-      "Path": "/sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq",
+      "Path": "/sys/devices/system/cpu/cpufreq/policy6/scaling_min_freq",
       "Values": [
-        "9999999",
         "1747200",
         "1536000",
         "1363200",
         "1132800",
-        "825600"
-      ],
-      "ResetOnInit": true
+        "979200",
+        "825600",
+        "300000"
+      ]
     },
     {
       "Name": "GPUMaxFreq",
@@ -197,9 +194,9 @@
   "Actions": [
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
-      "Node": "CPUBigClusterMaxFreq",
+      "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
-      "Value": "1363200"
+      "Value": "576000"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
@@ -209,15 +206,39 @@
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
-      "Node": "GPUMaxFreq",
+      "Node": "GPUMinFreq",
       "Duration": 0,
-      "Value": "355000000"
+      "Value": "180000000"
     },
     {
-      "PowerHint": "INTERACTION",
-      "Node": "CPUBigClusterMinFreq",
+      "PowerHint": "SUSTAINED_PERFORMANCE",
+      "Node": "GPUMaxFreq",
       "Duration": 0,
-      "Value": "1132800"
+      "Value": "430000000"
+    },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "CPULittleClusterMinFreq",
+      "Duration": 0,
+      "Value": "576000"
+    },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "CPULittleClusterMaxFreq",
+      "Duration": 0,
+      "Value": "998400"
+    },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "GPUMinFreq",
+      "Duration": 0,
+      "Value": "180000000"
+    },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "GPUMaxFreq",
+      "Duration": 0,
+      "Value": "180000000"
     },
     {
       "PowerHint": "INTERACTION",
@@ -260,24 +281,6 @@
       "Node": "SchedBoost",
       "Duration": 5000,
       "Value": "1"
-    },
-    {
-      "PowerHint": "LAUNCH",
-      "Node": "CPUBigClusterMaxFreq",
-      "Duration": 5000,
-      "Value": "9999999"
-    },
-    {
-      "PowerHint": "LAUNCH",
-      "Node": "CPUBigClusterMinFreq",
-      "Duration": 5000,
-      "Value": "9999999"
-    },
-    {
-      "PowerHint": "LAUNCH",
-      "Node": "CPULittleClusterMinFreq",
-      "Duration": 5000,
-      "Value": "9999999"
     },
     {
       "PowerHint": "LAUNCH",
@@ -341,51 +344,15 @@
     },
     {
       "PowerHint": "CAMERA_LAUNCH",
-      "Node": "CPUBigClusterMaxFreq",
-      "Duration": 1000,
-      "Value": "9999999"
-    },
-    {
-      "PowerHint": "CAMERA_LAUNCH",
-      "Node": "CPUBigClusterMinFreq",
-      "Duration": 1000,
-      "Value": "9999999"
-    },
-    {
-      "PowerHint": "CAMERA_LAUNCH",
-      "Node": "CPULittleClusterMaxFreq",
-      "Duration": 1000,
-      "Value": "9999999"
-    },
-    {
-      "PowerHint": "CAMERA_LAUNCH",
-      "Node": "CPULittleClusterMinFreq",
-      "Duration": 1000,
-      "Value": "9999999"
-    },
-    {
-      "PowerHint": "CAMERA_LAUNCH",
       "Node": "PMQoSCpuDmaLatency",
       "Duration": 1000,
       "Value": "44"
     },
     {
-      "PowerHint": "CAMERA_STREAMING",
-      "Node": "CPUBigClusterMaxFreq",
-      "Duration": 0,
-      "Value": "1996800"
-    },
-    {
-      "PowerHint": "CAMERA_STREAMING_1080P",
-      "Node": "CPUBigClusterMaxFreq",
-      "Duration": 0,
-      "Value": "1996800"
-    },
-    {
       "PowerHint": "CAMERA_STREAMING_1080P",
       "Node": "GPUMinFreq",
       "Duration": 0,
-      "Value": "430000000"
+      "Value": "267000000"
     },
     {
       "PowerHint": "CAMERA_STREAMING_1080P",
@@ -395,45 +362,21 @@
     },
     {
       "PowerHint": "CAMERA_STREAMING_4K",
-      "Node": "CPUBigClusterMaxFreq",
+      "Node": "GPUMinFreq",
       "Duration": 0,
-      "Value": "1996800"
+      "Value": "355000000"
     },
     {
-      "PowerHint": "CAMERA_SHOT",
-      "Node": "CPUBigClusterMaxFreq",
-      "Duration": 1000,
-      "Value": "9999999"
-    },
-    {
-      "PowerHint": "CAMERA_SHOT",
-      "Node": "CPUBigClusterMinFreq",
-      "Duration": 1000,
-      "Value": "9999999"
-    },
-    {
-      "PowerHint": "CAMERA_SHOT",
-      "Node": "CPULittleClusterMaxFreq",
-      "Duration": 1000,
-      "Value": "9999999"
-    },
-    {
-      "PowerHint": "CAMERA_SHOT",
-      "Node": "CPULittleClusterMinFreq",
-      "Duration": 1000,
-      "Value": "9999999"
+      "PowerHint": "CAMERA_STREAMING_4K",
+      "Node": "GPUMaxFreq",
+      "Duration": 0,
+      "Value": "430000000"
     },
     {
       "PowerHint": "CAMERA_SHOT",
       "Node": "PMQoSCpuDmaLatency",
       "Duration": 1000,
       "Value": "44"
-    },
-    {
-      "PowerHint": "AUDIO_STREAMING",
-      "Node": "CPUBigClusterMinFreq",
-      "Duration": 2000,
-      "Value": "1363200"
     },
     {
       "PowerHint": "AUDIO_STREAMING",
