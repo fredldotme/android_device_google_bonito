@@ -71,17 +71,64 @@ private:
     std::function<void()> mFunc;
 };
 
-#define ENSURE_HINT_SAVED() \
-    RaiiExec([=](){ \
-        if (data > 0) { \
-            mLastHint = (PowerHint_1_3)hint; \
-            mLastData = data; \
-        } \
-    });
-
 // On Ubuntu Touch repowerd/platform-api misuses setInteractive for screen on/off.
 // For the purpose of what we're trying to accomplish here "SUSTAINED_PERFORMANCE" fits well.
+// LOW_POWER is quite obvious.
 const PowerHint_1_3 interactionHint = PowerHint_1_3::SUSTAINED_PERFORMANCE;
+const std::string interactionHintString = "SUSTAINED_PERFORMANCE";
+const PowerHint_1_3 lowPowerHint = PowerHint_1_3::LOW_POWER;
+const std::string lowPowerHintString = "LOW_POWER";
+
+// If the subsystem-provided power hint at hand has ended we should be able to sustain performance.
+#define RESTORE_DEFAULT_IF_REQUIRED() \
+    if (mScreenOn && (PowerHint_1_3)hint != interactionHint && data == 0) { \
+        SET_LOW_POWER(false); \
+        SET_SUSTAINED(true); \
+    } else if (!mScreenOn && (PowerHint_1_3)hint != lowPowerHint && data == 0) { \
+        SET_SUSTAINED(false); \
+        SET_LOW_POWER(true); \
+    }
+
+#define ENSURE_HINT_SAVED_WHEN_DONE() \
+    RaiiExec([=](){ \
+        mLastHint = (PowerHint_1_3)hint; \
+        mLastData = data; \
+        RESTORE_DEFAULT_IF_REQUIRED(); \
+    });
+
+#define SET_SUSTAINED(v) \
+    ALOGI("SET_SUSTAINED_PERFORMANCE %s", v ? "ON" : "OFF"); \
+    if (v) { \
+        mHintManager->DoHint(interactionHintString); \
+        if (!android::base::SetProperty(kPowerHalStateProp, interactionHintString)) { \
+            ALOGE("%s: could not set powerHAL state property to SUSTAINED_PERFORMANCE", __func__); \
+        } \
+    } else { \
+        mHintManager->EndHint(interactionHintString); \
+        if (!android::base::SetProperty(kPowerHalStateProp, "")) { \
+            ALOGE("%s: could not clear powerHAL state property", __func__); \
+        } \
+    } \
+    mSustainedPerfModeOn = v; \
+    mLastHint = interactionHint; \
+    mLastData = v ? 1 : 0;
+
+#define SET_LOW_POWER(v) \
+    ALOGI("SET_LOW_POWER %s", v ? "ON" : "OFF"); \
+    if (v) { \
+        mHintManager->DoHint(lowPowerHintString); \
+        if (!android::base::SetProperty(kPowerHalStateProp, lowPowerHintString)) { \
+            ALOGE("%s: could not set powerHAL state property to LOW_POWER", __func__); \
+        } \
+    } else { \
+        mHintManager->EndHint(lowPowerHintString); \
+        if (!android::base::SetProperty(kPowerHalStateProp, "")) { \
+            ALOGE("%s: could not clear powerHAL state property", __func__); \
+        } \
+    } \
+    mSustainedPerfModeOn = false; \
+    mLastHint = lowPowerHint; \
+    mLastData = v ? 1 : 0;
 
 Power::Power()
     : mHintManager(nullptr),
@@ -128,9 +175,9 @@ Power::Power()
                                 mHintManager->DoHint("EXPENSIVE_RENDERING");
                             }
 
-                            mLastHint = (PowerHint_1_3)0;
-                            mLastData = 0;
+                            mIgnoreScreenOn.store(false);
                             mScreenOn.store(true);
+                            SET_SUSTAINED(true);
 
                             // Now start to take powerhint
                             mReady.store(true);
@@ -153,19 +200,18 @@ Return<void> Power::setInteractive(bool interactive) {
     // Now we're free to save the screen state as we wish.
     mScreenOn.store(interactive);
 
-    if (interactive) {
-        if (mLastHint != (PowerHint_1_3)0) {
-            powerHintAsync_1_3(mLastHint, mLastData);
+#if 0
+    if (mLastHint != interactionHint && mLastHint != lowPowerHint) {
+        powerHintAsync_1_3(mLastHint, interactive ? mLastData : 0);
+    } else
+#endif
+    {
+        if (interactive) {
+            SET_LOW_POWER(false);
+            SET_SUSTAINED(true);
         } else {
-            powerHintAsync_1_3(interactionHint, 1);
-            mLastHint = interactionHint;
-            mLastData = 1;
-        }
-    } else {
-        if (mLastHint != (PowerHint_1_3)0) {
-            powerHintAsync_1_3(mLastHint, 0);
-        } else {
-            powerHintAsync_1_3(interactionHint, 0);
+            SET_SUSTAINED(false);
+            SET_LOW_POWER(true);
         }
     }
 
@@ -177,7 +223,7 @@ Return<void> Power::powerHint(PowerHint_1_0 hint, int32_t data) {
         return Void();
     }
 
-    ENSURE_HINT_SAVED();
+    ENSURE_HINT_SAVED_WHEN_DONE();
 
     switch(hint) {
         case PowerHint_1_0::INTERACTION:
@@ -188,14 +234,14 @@ Return<void> Power::powerHint(PowerHint_1_0 hint, int32_t data) {
             }
             break;
         case PowerHint_1_0::SUSTAINED_PERFORMANCE:
-            if (data && !mSustainedPerfModeOn) {
+            if (data && !mSustainedPerfModeOn && !mCameraStreamingMode) {
                 ALOGD("SUSTAINED_PERFORMANCE ON");
                 mHintManager->DoHint("SUSTAINED_PERFORMANCE");
                 if (!android::base::SetProperty(kPowerHalStateProp, "SUSTAINED_PERFORMANCE")) {
                     ALOGE("%s: could not set powerHAL state property to SUSTAINED_PERFORMANCE", __func__);
                 }
                 mSustainedPerfModeOn = true;
-            } else if (!data && mSustainedPerfModeOn) {
+            } else if (!data && mSustainedPerfModeOn && !mCameraStreamingMode) {
                 ALOGD("SUSTAINED_PERFORMANCE OFF");
                 mHintManager->EndHint("SUSTAINED_PERFORMANCE");
                 if (!android::base::SetProperty(kPowerHalStateProp, "")) {
@@ -225,25 +271,18 @@ Return<void> Power::powerHint(PowerHint_1_0 hint, int32_t data) {
         case PowerHint_1_0::LOW_POWER:
             {
             ATRACE_BEGIN("low-power");
-
             if (data) {
-              // Device in battery saver mode, enable display low power mode
-              set_display_lpm(true);
+                SET_LOW_POWER(true);
             } else {
-              // Device exiting battery saver mode, disable display low power mode
-              set_display_lpm(false);
+                SET_LOW_POWER(false);
             }
+            mSustainedPerfModeOn = false;
             ATRACE_END();
             }
             break;
         default:
             break;
 
-    }
-
-    // If the power hint at hand is ended we should be able to sustain performance.
-    if (mScreenOn && data == 0) {
-        powerHintAsync_1_3(interactionHint, 1);
     }
 
     return Void();
@@ -402,7 +441,7 @@ Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
         return Void();
     }
 
-    ENSURE_HINT_SAVED();
+    ENSURE_HINT_SAVED_WHEN_DONE();
 
     switch(hint) {
         case PowerHint_1_2::AUDIO_LOW_LATENCY:
@@ -445,6 +484,7 @@ Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
             break;
         case PowerHint_1_2::CAMERA_LAUNCH:
             ATRACE_BEGIN("camera_launch");
+#if 0
             if (data > 0) {
                 ATRACE_INT("camera_launch_lock", 1);
                 mHintManager->DoHint("CAMERA_LAUNCH", std::chrono::milliseconds(data));
@@ -458,6 +498,7 @@ Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
             } else {
                 ALOGE("CAMERA LAUNCH INVALID DATA: %d", data);
             }
+#endif
             ATRACE_END();
             break;
         case PowerHint_1_2::CAMERA_STREAMING: {
@@ -476,8 +517,10 @@ Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
                 const auto modeValue = kCamStreamingHint.at(mCameraStreamingMode);
                 ATRACE_INT("camera_streaming_lock", 0);
                 mHintManager->EndHint(modeValue);
+#if 0
                 // Boost 1s for tear down
                 mHintManager->DoHint("CAMERA_LAUNCH", std::chrono::seconds(1));
+#endif
                 ALOGD("CAMERA %s OFF", modeValue.c_str());
             }
 
@@ -517,10 +560,6 @@ Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
             return powerHint(static_cast<PowerHint_1_0>(hint), data);
     }
 
-    if (mScreenOn && data == 0) {
-        powerHintAsync_1_3(interactionHint, 1);
-    }
-
     return Void();
 }
 
@@ -530,7 +569,7 @@ Return<void> Power::powerHintAsync_1_3(PowerHint_1_3 hint, int32_t data) {
         return Void();
     }
 
-    ENSURE_HINT_SAVED();
+    ENSURE_HINT_SAVED_WHEN_DONE();
 
     if (hint == PowerHint_1_3::EXPENSIVE_RENDERING) {
         if (mSustainedPerfModeOn) {
@@ -554,10 +593,6 @@ Return<void> Power::powerHintAsync_1_3(PowerHint_1_3 hint, int32_t data) {
         }
     } else {
         return powerHintAsync_1_2(static_cast<PowerHint_1_2>(hint), data);
-    }
-
-    if (mScreenOn && data == 0) {
-        powerHintAsync_1_3(interactionHint, 1);
     }
 
     return Void();
