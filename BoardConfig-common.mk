@@ -47,6 +47,7 @@ BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += datapart=/dev/mmcblk0p72
 #BOARD_KERNEL_CMDLINE += systempart=slotselect:system
 BOARD_KERNEL_CMDLINE += apparmor=1 security=apparmor
+BOARD_KERNEL_CMDLINE += qpnp_smb2.debug_mask=0
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
