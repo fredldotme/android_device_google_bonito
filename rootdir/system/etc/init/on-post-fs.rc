@@ -17,6 +17,7 @@ on boot
     setprop persist.vendor.radio.relay_oprt_change ""
     setprop persist.vendor.radio.no_wait_for_card ""
     setprop debug.stagefright.ccodec 0
+    # write /sys/devices/virtual/thermal/tz-by-name/backup-charge/mode enabled
     enable vendor.qcrild
 
 on post-fs
@@ -44,8 +45,8 @@ on property:persist.double_tap_to_wake=true
 on property:persist.double_tap_to_wake=false
     write /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture 0
 
-on property:init.svc.vendor.hwcomposer-2-2=running
-    stop ppd
+service ppd ppd_HALIUM_DISABLED
+    override
 
 # Disable IMS services
 service imsqmidaemon imsqmidaemon_HALIUM_DISABLED
@@ -79,6 +80,12 @@ service time_daemon time_daemon_HALIUM_DISABLED
 
 # Disable Android audio HAL, PulseAudio is our alternative
 service vendor.audio-hal-2-0 android.hardware.audio@2.0-service_HYBRIS_DISABLED
+    disabled
+    oneshot
+    override
+
+# Rely on a non-spamming thermal management solution
+service vendor.thermal-engine /vendor/bin/thermal-engine_HYBRIS_DISABLED
     disabled
     oneshot
     override
