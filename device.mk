@@ -811,8 +811,7 @@ PRODUCT_PACKAGES += \
 	libxml2
 
 PRODUCT_PACKAGES += \
-	miniafservice \
-	powerswitch
+	miniafservice
 
 # Ubuntu Touch/Halium override files
 PRODUCT_COPY_FILES += \
@@ -832,15 +831,15 @@ PRODUCT_COPY_FILES += \
 #    ubuntu.widi.supported=1
 
 # Enable libpowerswitch (RQBalance controller)
-PRODUCT_PROPERTY_OVERRIDES += \
-    ubuntu.booster.dl=/system/lib64/libpowerswitch.so \
-    ubuntu.booster.enable=set_screen_on \
-    ubuntu.booster.disable=set_screen_off
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    ubuntu.booster.dl=/system/lib64/libpowerswitch.so \
+#    ubuntu.booster.enable=set_screen_on \
+#    ubuntu.booster.disable=set_screen_off
 
 # Enable interactive drawer blur in unity8
 PRODUCT_PROPERTY_OVERRIDES += \
     ubuntu.unity8.interactive_blur=true
 
-# Enable Double-Tap-To-Wake by default
+# Disable Double-Tap-To-Wake by default
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.double_tap_to_wake=false
