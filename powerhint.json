@@ -261,7 +261,7 @@
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "CPUMinCores",
       "Duration": 0,
-      "Value": "4"
+      "Value": "2"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
@@ -474,6 +474,18 @@
       "Value": "430000000"
     },
     {
+      "PowerHint": "CAMERA_STREAMING_1080P",
+      "Node": "CPUMinCores",
+      "Duration": 0,
+      "Value": "4"
+    },
+    {
+      "PowerHint": "CAMERA_STREAMING_1080P",
+      "Node": "CPUMaxCores",
+      "Duration": 0,
+      "Value": "8"
+    },
+    {
       "PowerHint": "CAMERA_STREAMING_4K",
       "Node": "GPUMinFreq",
       "Duration": 0,
@@ -484,6 +496,18 @@
       "Node": "GPUMaxFreq",
       "Duration": 0,
       "Value": "430000000"
+    },
+    {
+      "PowerHint": "CAMERA_STREAMING_4K",
+      "Node": "CPUMinCores",
+      "Duration": 0,
+      "Value": "4"
+    },
+    {
+      "PowerHint": "CAMERA_STREAMING_4K",
+      "Node": "CPUMaxCores",
+      "Duration": 0,
+      "Value": "8"
     },
     {
       "PowerHint": "CAMERA_SHOT",
