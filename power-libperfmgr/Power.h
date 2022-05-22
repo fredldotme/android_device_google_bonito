@@ -80,6 +80,7 @@ struct Power : public IPower {
     std::atomic<bool> mSustainedPerfModeOn;
     std::atomic<enum CameraStreamingMode> mCameraStreamingMode;
     std::atomic<bool> mReady;
+    std::thread mInputThread;
     std::thread mInitThread;
     PowerHint_1_3 mLastHint;
     int32_t mLastData;

@@ -23,6 +23,17 @@
 #include <android-base/strings.h>
 #include <android-base/stringprintf.h>
 
+#include <fcntl.h>
+#include <iostream>
+#include <linux/input.h>
+#include <linux/limits.h>
+#include <limits>
+#include <sys/ioctl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <poll.h>
+
 #include <functional>
 #include <mutex>
 
@@ -183,6 +194,61 @@ Power::Power()
                             mReady.store(true);
                         });
     mInitThread.detach();
+
+    mInputThread =
+            std::thread([this](){
+                     static const char* targetName = "synaptics_dsx";
+                     int fd = -1;
+                     int ioctlResult;
+                     char name[256];
+                     std::vector<pollfd> poll_fds;
+                     for (int i = 0; i < 9; i++) {
+                         char eventPath[PATH_MAX];
+
+                         memset(name, 0, sizeof(name));
+                         sprintf(eventPath, "/dev/input/event%d", i);
+                         ALOGV("Trying %s", eventPath);
+
+                         fd = open(eventPath, O_RDONLY);
+                         ioctlResult = ioctl(fd, EVIOCGNAME(sizeof(name)), name);
+                         ALOGV("Device name is %s'", name);
+
+                         if (ioctlResult < 0) {
+                             close(fd);
+                             fd = -1;
+                             continue;
+                         }
+
+                         if (strcmp(targetName, name) == 0) {
+                             poll_fds.push_back({fd, POLLIN, 0});
+                             break;
+                         }
+                     }
+                     if (fd < 0) {
+                         ALOGE("Failed to find input device");
+                         return;
+                     }
+
+                     input_event ev;
+                     while (true) {
+                         poll(poll_fds.data(), poll_fds.size(), -1);
+                         for (auto &pfd : poll_fds) {
+                             if (pfd.revents & POLLIN) {
+                                 if (read(pfd.fd, &ev, sizeof(ev)) == sizeof(ev)) {
+                                     if (mReady) {
+                                         if (ev.type == EV_ABS) {
+                                             mInteractionHandler->Acquire(3000);
+                                             continue;
+                                         }
+                                     }
+                                 }
+                             }
+                         }
+                     }
+
+                     close(fd);
+            });
+    mInputThread.detach();
 }
 
 // Methods from ::android::hardware::power::V1_0::IPower follow.
