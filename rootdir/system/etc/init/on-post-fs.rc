@@ -91,6 +91,19 @@ service vendor.thermal-engine /vendor/bin/thermal-engine_HYBRIS_DISABLED
     oneshot
     override
 
+# Reduce log spam from unneeded service
+service storaged /system/bin/storaged_HALIUM_DISABLED
+    class main
+    capabilities DAC_READ_SEARCH
+    priority 10
+    file /d/mmc0/mmc0:0001/ext_csd r
+    writepid /dev/cpuset/system-background/tasks
+    user root
+    group package_info
+    disabled
+    oneshot
+    override
+
 # Pin IRQs to little cluster
 service msm_irqbalance /vendor/bin/msm_irqbalance -f /system/etc/msm_irqbalance.conf
     socket msm_irqbalance seqpacket 660 root system
