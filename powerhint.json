@@ -70,6 +70,14 @@
       ]
     },
     {
+      "Name": "RQBalanceIsolation",
+      "Path": "/sys/devices/system/cpu/cpuquiet/use_sched_isolation",
+      "Values": [
+        "0",
+        "1"
+      ]
+    },
+    {
       "Name": "GPUMaxFreq",
       "Path": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
       "Values": [
@@ -271,6 +279,12 @@
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
+      "Node": "RQBalanceIsolation",
+      "Duration": 0,
+      "Value": "1"
+    },
+    {
+      "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "L3LittleClusterMaxFreq",
       "Duration": 0,
       "Value": "1440000000"
@@ -316,6 +330,12 @@
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
       "Value": "825600"
+    },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "RQBalanceIsolation",
+      "Duration": 0,
+      "Value": "0"
     },
     {
       "PowerHint": "LOW_POWER",
