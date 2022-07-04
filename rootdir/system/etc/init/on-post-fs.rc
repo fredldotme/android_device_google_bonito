@@ -1,3 +1,9 @@
+on early-init
+    setprop debug.stagefright.ccodec 0
+
+on init
+    setprop debug.stagefright.ccodec 0
+
 on boot
     setprop persist.vendor.radio.mt_sms_ack 30
     setprop persist.vendor.radio.manual_nw_rej_ct 1
