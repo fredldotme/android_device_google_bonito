@@ -46,12 +46,6 @@ on post-fs-data
     setprop sys.user.0.ce_available true
     setprop ctl.restart vendor.ramoops_sh
 
-on property:persist.double_tap_to_wake=true
-    write /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture 1
-
-on property:persist.double_tap_to_wake=false
-    write /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture 0
-
 service ppd ppd_HALIUM_DISABLED
     override
 
