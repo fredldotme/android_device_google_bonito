@@ -826,7 +826,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/etc/rqbalance_config.xml:system/etc/rqbalance_config.xml \
     $(LOCAL_PATH)/rootdir/system/halium/etc/pulse/touch-android9.pa:system/halium/etc/pulse/touch-android9.pa \
     $(LOCAL_PATH)/rootdir/system/etc/msm_irqbalance.conf:system/etc/msm_irqbalance.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/prop.halium:system/etc/prop.halium
+    $(LOCAL_PATH)/rootdir/system/etc/prop.halium:system/etc/prop.halium \
+    $(LOCAL_PATH)/rootdir/system/halium/etc/deviceinfo/devices/halium.yaml:system/halium/etc/deviceinfo/devices/halium.yaml
 
 PRODUCT_PACKAGES += \
     powerswitch

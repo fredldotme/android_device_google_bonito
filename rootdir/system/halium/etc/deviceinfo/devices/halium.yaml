@@ -1,0 +1,23 @@
+default:
+  Vendor: Google
+  DeviceType: phone
+
+sargo:
+  PrettyName: Google Pixel 3a
+  GridUnit: 25
+  SupportedOrientations:
+    - Portrait
+    - Landscape
+    - InvertedLandscape
+  DoubleTapToWake:
+    - /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture|1|0
+
+bonito:
+  PrettyName: Google Pixel 3a XL
+  GridUnit: 25
+  SupportedOrientations:
+    - Portrait
+    - Landscape
+    - InvertedLandscape
+  DoubleTapToWake:
+    - /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture|1|0
