@@ -14,10 +14,11 @@
 
 LOCAL_PATH := $(call my-dir)
 
+
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := expatparser.cpp booster.cpp
-LOCAL_SHARED_LIBRARIES := liblog libcutils libexpat
+LOCAL_SRC_FILES := booster.cpp
+LOCAL_SHARED_LIBRARIES := liblog libcutils
 LOCAL_MODULE := libpowerswitch
 LOCAL_MODULE_TAGS := optional
 
