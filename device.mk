@@ -825,17 +825,21 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/upstart/sessions/mtp-server.conf:system/halium/usr/share/upstart/sessions/mtp-server.conf \
     $(LOCAL_PATH)/rootdir/system/etc/rqbalance_config.xml:system/etc/rqbalance_config.xml \
     $(LOCAL_PATH)/rootdir/system/halium/etc/pulse/touch-android9.pa:system/halium/etc/pulse/touch-android9.pa \
-    $(LOCAL_PATH)/rootdir/system/etc/msm_irqbalance.conf:system/etc/msm_irqbalance.conf
+    $(LOCAL_PATH)/rootdir/system/etc/msm_irqbalance.conf:system/etc/msm_irqbalance.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/prop.halium:system/etc/prop.halium
+
+PRODUCT_PACKAGES += \
+    powerswitch
 
 # Ubuntu Touch additional properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ubuntu.widi.supported=1
 
 # Enable libpowerswitch (RQBalance controller)
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    ubuntu.booster.dl=/system/lib64/libpowerswitch.so \
-#    ubuntu.booster.enable=set_screen_on \
-#    ubuntu.booster.disable=set_screen_off
+PRODUCT_PROPERTY_OVERRIDES += \
+    ubuntu.booster.dl=/system/lib64/libpowerswitch.so \
+    ubuntu.booster.enable=set_screen_on \
+    ubuntu.booster.disable=set_screen_off
 
 # Enable interactive drawer blur in unity8
 PRODUCT_PROPERTY_OVERRIDES += \
