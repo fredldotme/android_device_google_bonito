@@ -824,7 +824,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/etc/init/mtp-state.conf:system/halium/etc/init/mtp-state.conf \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/upstart/sessions/mtp-server.conf:system/halium/usr/share/upstart/sessions/mtp-server.conf \
     $(LOCAL_PATH)/rootdir/system/etc/rqbalance_config.xml:system/etc/rqbalance_config.xml \
-    $(LOCAL_PATH)/rootdir/system/halium/etc/pulse/touch-android9.pa:system/halium/etc/pulse/touch-android9.pa \
     $(LOCAL_PATH)/rootdir/system/etc/msm_irqbalance.conf:system/etc/msm_irqbalance.conf \
     $(LOCAL_PATH)/rootdir/system/etc/prop.halium:system/etc/prop.halium \
     $(LOCAL_PATH)/rootdir/system/halium/etc/deviceinfo/devices/halium.yaml:system/halium/etc/deviceinfo/devices/halium.yaml
