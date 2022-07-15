@@ -12,7 +12,7 @@ sargo:
   DoubleTapToWake:
     - /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture|1|0
   MirAndroidPlatformClientEglFlush:
-    - all
+    - "!/usr/bin/unity8,!/usr/bin/lomiri,all"
   MirAndroidPlatformServerEglSync:
     - false
   MirAndroidPlatformServerPartialUpdates:
@@ -29,7 +29,7 @@ bonito:
   DoubleTapToWake:
     - /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture|1|0
   MirAndroidPlatformClientEglFlush:
-    - all
+    - "!/usr/bin/unity8,!/usr/bin/lomiri,all"
   MirAndroidPlatformServerEglSync:
     - false
   MirAndroidPlatformServerPartialUpdates:
