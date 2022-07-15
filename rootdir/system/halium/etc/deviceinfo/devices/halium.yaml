@@ -1,9 +1,9 @@
 default:
   Vendor: Google
-  DeviceType: phone
 
 sargo:
-  PrettyName: Google Pixel 3a
+  PrettyName: Pixel 3a
+  DeviceType: phone
   GridUnit: 25
   SupportedOrientations:
     - Portrait
@@ -11,9 +11,16 @@ sargo:
     - InvertedLandscape
   DoubleTapToWake:
     - /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture|1|0
+  MirAndroidPlatformClientEglFlush:
+    - all
+  MirAndroidPlatformServerEglSync:
+    - false
+  MirAndroidPlatformServerPartialUpdates:
+    - true
 
 bonito:
   PrettyName: Google Pixel 3a XL
+  DeviceType: phone
   GridUnit: 25
   SupportedOrientations:
     - Portrait
@@ -21,3 +28,9 @@ bonito:
     - InvertedLandscape
   DoubleTapToWake:
     - /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture|1|0
+  MirAndroidPlatformClientEglFlush:
+    - all
+  MirAndroidPlatformServerEglSync:
+    - false
+  MirAndroidPlatformServerPartialUpdates:
+    - true
