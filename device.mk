@@ -825,7 +825,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/usr/share/upstart/sessions/mtp-server.conf:system/halium/usr/share/upstart/sessions/mtp-server.conf \
     $(LOCAL_PATH)/rootdir/system/etc/rqbalance_config.xml:system/etc/rqbalance_config.xml \
     $(LOCAL_PATH)/rootdir/system/etc/msm_irqbalance.conf:system/etc/msm_irqbalance.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/prop.halium:system/etc/prop.halium \
+    $(LOCAL_PATH)/rootdir/system/etc/halium.prop:system/etc/halium.prop \
     $(LOCAL_PATH)/rootdir/system/halium/etc/deviceinfo/devices/halium.yaml:system/halium/etc/deviceinfo/devices/halium.yaml
 
 PRODUCT_PACKAGES += \
