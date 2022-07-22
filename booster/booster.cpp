@@ -34,6 +34,8 @@
 using namespace std;
 
 static const string TOUCHSCREEN_RESET = "/sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/hw_reset";
+static const string ONLINE_CPU6 = "/sys/devices/system/cpu/cpu6/online";
+static const string ONLINE_CPU7 = "/sys/devices/system/cpu/cpu7/online";
 
 static bool sysfs_write(const char *path, const char *s)
 {
@@ -62,9 +64,13 @@ static bool sysfs_write(const char *path, const char *s)
 }
 extern "C" {
 void set_screen_on(int) {
+    sysfs_write(ONLINE_CPU6.c_str(), "1");
+    sysfs_write(ONLINE_CPU7.c_str(), "1");
     sysfs_write(TOUCHSCREEN_RESET.c_str(), "1");
 }
 
 void set_screen_off(int) {
+    sysfs_write(ONLINE_CPU6.c_str(), "0");
+    sysfs_write(ONLINE_CPU7.c_str(), "0");
 }
 }
