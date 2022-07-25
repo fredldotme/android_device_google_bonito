@@ -409,8 +409,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libmedia_codecserviceregistrant \
     libqcodec2 \
-    libstagefright_ccodec \
-    vendor.qti.media.c2@1.0-service \
+    vendor.qti.media.c2@1.0-service
 
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
@@ -845,6 +844,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ubuntu.unity8.interactive_blur=true
 
-# Disable Double-Tap-To-Wake by default
+# Camera tweaks
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.double_tap_to_wake=false
+    persist.camera.eis.enable=0 \
+    persist.camera.googfd.enable=0 \
+    persist.camera.llv.enable=0 \
+    persist.camera.googleusecase.enable=0
