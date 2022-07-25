@@ -843,10 +843,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Enable interactive drawer blur in unity8
 PRODUCT_PROPERTY_OVERRIDES += \
     ubuntu.unity8.interactive_blur=true
-
-# Camera tweaks
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.camera.eis.enable=0 \
-    persist.camera.googfd.enable=0 \
-    persist.camera.llv.enable=0 \
-    persist.camera.googleusecase.enable=0
