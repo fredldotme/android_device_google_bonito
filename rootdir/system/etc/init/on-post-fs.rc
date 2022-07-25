@@ -8,19 +8,19 @@ on boot
     setprop persist.vendor.radio.mt_sms_ack 30
     setprop persist.vendor.radio.manual_nw_rej_ct 1
     setprop persist.rcs.supported 0
-    setprop persist.vendor.cne.feature ""
-    setprop persist.vendor.data.iwlan.enable ""
-    setprop persist.radio.RATE_ADAPT_ENABLE ""
-    setprop persist.radio.ROTATION_ENABLE ""
-    setprop persist.radio.VT_ENABLE ""
-    setprop persist.radio.VT_HYBRID_ENABLE ""
-    setprop persist.vendor.radio.apm_sim_not_pwdn ""
-    setprop persist.vendor.radio.custom_ecc ""
-    setprop persist.vendor.radio.data_ltd_sys_ind ""
-    setprop persist.radio.videopause.mode ""
-    setprop persist.vendor.radio.sib16_support ""
-    setprop persist.vendor.radio.data_con_rprt ""
-    setprop persist.vendor.radio.relay_oprt_change ""
+    setprop persist.vendor.cne.feature 1
+    setprop persist.vendor.data.iwlan.enable true
+    setprop persist.radio.RATE_ADAPT_ENABLE 1
+    setprop persist.radio.ROTATION_ENABLE 1
+    setprop persist.radio.VT_ENABLE 1
+    setprop persist.radio.VT_HYBRID_ENABLE 1
+    setprop persist.vendor.radio.apm_sim_not_pwdn 1
+    setprop persist.vendor.radio.custom_ecc 1
+    setprop persist.vendor.radio.data_ltd_sys_ind 1
+    setprop persist.radio.videopause.mode 1
+    setprop persist.vendor.radio.sib16_support 1
+    setprop persist.vendor.radio.data_con_rprt true
+    setprop persist.vendor.radio.relay_oprt_change 1
     setprop persist.vendor.radio.no_wait_for_card ""
     setprop debug.stagefright.ccodec 0
     write /sys/devices/virtual/thermal/tz-by-name/backup-charge/mode enabled
@@ -49,28 +49,8 @@ on post-fs-data
 service ppd ppd_HALIUM_DISABLED
     override
 
-# Disable IMS services
-service imsqmidaemon imsqmidaemon_HALIUM_DISABLED
-    override
-
-service imsdatadaemon imsdatadaemon_HALIUM_DISABLED
-    override
-
 service imsrcsservice imsrcsd_HALIUM_DISABLED
     override
-
-service ims_rtp_daemon ims_rtp_daemon_HALIUM_DISABLED
-    override
-
-on property:init.svc.imsqmidaemon=running
-    stop imsqmidaemon
-    setprop vendor.ims.QMI_DAEMON_STATUS ""
-
-on property:init.svc.imsdatadaemon=running
-    stop imsdatadaemon
-
-on property:init.svc.ims_rtp_daemon=running
-    stop ims_rtp_daemon
 
 on property:init.svc.imsrcsservice=running
     stop imsrcsservice
