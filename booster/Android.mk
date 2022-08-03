@@ -23,13 +23,3 @@ LOCAL_MODULE := libpowerswitch
 LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
-
-LOCAL_SRC_FILES := powerswitch.cpp
-LOCAL_SHARED_LIBRARIES := liblog libpowerswitch
-LOCAL_MODULE := powerswitch
-LOCAL_MODULE_TAGS := optional
-LOCAL_INIT_RC := powerswitch.rc
-
-include $(BUILD_EXECUTABLE)

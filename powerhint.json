@@ -50,23 +50,35 @@
       ]
     },
     {
-      "Name": "CPUMinCores",
-      "Path": "/sys/devices/system/cpu/cpuquiet/nr_min_cpus",
+      "Name": "CPUCore7",
+      "Path": "/sys/devices/system/cpu/cpu7/online",
       "Values": [
-        "8",
-        "6",
-        "4",
-        "2"
+        "0",
+        "1"
       ]
     },
     {
-      "Name": "CPUMaxCores",
-      "Path": "/sys/devices/system/cpu/cpuquiet/nr_power_max_cpus",
+      "Name": "CPUCore6",
+      "Path": "/sys/devices/system/cpu/cpu6/online",
       "Values": [
-        "8",
-        "6",
-        "4",
-        "2"
+        "0",
+        "1"
+      ]
+    },
+    {
+      "Name": "CPUCore5",
+      "Path": "/sys/devices/system/cpu/cpu5/online",
+      "Values": [
+        "0",
+        "1"
+      ]
+    },
+    {
+      "Name": "CPUCore4",
+      "Path": "/sys/devices/system/cpu/cpu4/online",
+      "Values": [
+        "0",
+        "1"
       ]
     },
     {
@@ -235,6 +247,30 @@
   "Actions": [
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
+      "Node": "CPUCore7",
+      "Duration": 0,
+      "Value": "1"
+    },
+    {
+      "PowerHint": "SUSTAINED_PERFORMANCE",
+      "Node": "CPUCore6",
+      "Duration": 0,
+      "Value": "1"
+    },
+    {
+      "PowerHint": "SUSTAINED_PERFORMANCE",
+      "Node": "CPUCore5",
+      "Duration": 0,
+      "Value": "1"
+    },
+    {
+      "PowerHint": "SUSTAINED_PERFORMANCE",
+      "Node": "CPUCore4",
+      "Duration": 0,
+      "Value": "1"
+    },
+    {
+      "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
       "Value": "576000"
@@ -281,6 +317,30 @@
       "Duration": 0,
       "Value": "430000000"
     },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "CPUCore7",
+      "Duration": 0,
+      "Value": "0"
+    },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "CPUCore6",
+      "Duration": 0,
+      "Value": "0"
+    },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "CPUCore5",
+      "Duration": 0,
+      "Value": "0"
+    },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "CPUCore4",
+      "Duration": 0,
+      "Value": "0"
+  },
     {
       "PowerHint": "LOW_POWER",
       "Node": "CPULittleClusterMinFreq",
@@ -486,12 +546,6 @@
       "Value": "430000000"
     },
     {
-      "PowerHint": "CAMERA_STREAMING_1080P",
-      "Node": "CPUMaxCores",
-      "Duration": 0,
-      "Value": "8"
-    },
-    {
       "PowerHint": "CAMERA_STREAMING_4K",
       "Node": "GPUMinFreq",
       "Duration": 0,
@@ -502,12 +556,6 @@
       "Node": "GPUMaxFreq",
       "Duration": 0,
       "Value": "430000000"
-    },
-    {
-      "PowerHint": "CAMERA_STREAMING_4K",
-      "Node": "CPUMaxCores",
-      "Duration": 0,
-      "Value": "8"
     },
     {
       "PowerHint": "CAMERA_SHOT",
