@@ -10,6 +10,11 @@ done
 
 mkdir /data/android-data > /dev/kmsg
 mkdir /data/android-data/cache > /dev/kmsg
+
+if [ ! -L /data/cache ]; then
+    ln -sf android-data/cache /data/cache > /dev/kmsg
+fi
+
 mount -o bind /data/android-data/cache /cache > /dev/kmsgs
 
 setprop halium.datamount.done 1
