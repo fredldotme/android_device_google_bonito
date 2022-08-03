@@ -814,6 +814,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	miniafservice
 
+# For lomiricontext
+PRODUCT_PACKAGES += \
+	libui_compat_layer
+
+
 # Ubuntu Touch/Halium override files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/halium/lib/udev/rules.d/70-android.rules:system/halium/lib/udev/rules.d/70-android.rules \
