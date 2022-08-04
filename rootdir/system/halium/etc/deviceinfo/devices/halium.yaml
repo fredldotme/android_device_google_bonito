@@ -1,7 +1,5 @@
-default:
-  Vendor: Google
-
 sargo:
+  Vendor: Google
   PrettyName: Pixel 3a
   DeviceType: phone
   GridUnit: 25
@@ -17,9 +15,12 @@ sargo:
     - false
   MirAndroidPlatformServerPartialUpdates:
     - true
+  LomiriInteractiveBlur:
+    - true
 
 bonito:
-  PrettyName: Google Pixel 3a XL
+  Vendor: Google
+  PrettyName: Pixel 3a XL
   DeviceType: phone
   GridUnit: 25
   SupportedOrientations:
@@ -33,4 +34,6 @@ bonito:
   MirAndroidPlatformServerEglSync:
     - false
   MirAndroidPlatformServerPartialUpdates:
+    - true
+  LomiriInteractiveBlur:
     - true
