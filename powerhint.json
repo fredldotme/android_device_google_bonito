@@ -233,15 +233,6 @@
         "100"
       ],
       "HoldFd": true
-    },
-    {
-      "Name": "SchedBoost",
-      "Path": "/proc/sys/kernel/sched_boost",
-      "Values": [
-        "1",
-        "0"
-      ],
-      "ResetOnInit": true
     }
   ],
   "Actions": [
@@ -273,25 +264,25 @@
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
-      "Value": "576000"
+      "Value": "300000"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "CPULittleClusterMaxFreq",
       "Duration": 0,
-      "Value": "1209600"
+      "Value": "1612800"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "CPUBigClusterMinFreq",
       "Duration": 0,
-      "Value": "825600"
+      "Value": "300000"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
-      "Value": "1536000"
+      "Value": "1996800"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
@@ -309,7 +300,7 @@
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "GPUMinFreq",
       "Duration": 0,
-      "Value": "267000000"
+      "Value": "180000000"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
@@ -340,12 +331,12 @@
       "Node": "CPUCore4",
       "Duration": 0,
       "Value": "0"
-  },
+    },
     {
       "PowerHint": "LOW_POWER",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
-      "Value": "576000"
+      "Value": "300000"
     },
     {
       "PowerHint": "LOW_POWER",
@@ -391,30 +382,6 @@
     },
     {
       "PowerHint": "INTERACTION",
-      "Node": "CPULittleClusterMinFreq",
-      "Duration": 0,
-      "Value": "1209600"
-    },
-    {
-      "PowerHint": "INTERACTION",
-      "Node": "CPULittleClusterMaxFreq",
-      "Duration": 0,
-      "Value": "1612800"
-    },
-    {
-      "PowerHint": "INTERACTION",
-      "Node": "CPUBigClusterMinFreq",
-      "Duration": 0,
-      "Value": "1132800"
-    },
-    {
-      "PowerHint": "INTERACTION",
-      "Node": "CPUBigClusterMaxFreq",
-      "Duration": 0,
-      "Value": "1996800"
-    },
-    {
-      "PowerHint": "INTERACTION",
       "Node": "L3LittleClusterMaxFreq",
       "Duration": 0,
       "Value": "1440000000"
@@ -429,7 +396,7 @@
       "PowerHint": "INTERACTION",
       "Node": "GPUMinFreq",
       "Duration": 0,
-      "Value": "267000000"
+      "Value": "180000000"
     },
     {
       "PowerHint": "INTERACTION",
@@ -460,12 +427,6 @@
       "Node": "CPUBWMinFreq",
       "Duration": 0,
       "Value": "5161"
-    },
-    {
-      "PowerHint": "LAUNCH",
-      "Node": "SchedBoost",
-      "Duration": 5000,
-      "Value": "1"
     },
     {
       "PowerHint": "LAUNCH",
@@ -579,7 +540,7 @@
       "PowerHint": "EXPENSIVE_RENDERING",
       "Node": "GPUMinFreq",
       "Duration": 0,
-      "Value": "355000000"
+      "Value": "267000000"
     },
     {
       "PowerHint": "EXPENSIVE_RENDERING",
