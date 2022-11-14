@@ -8,7 +8,7 @@ sargo:
     - Landscape
     - InvertedLandscape
   DoubleTapToWake:
-    - /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture|1|0
+    - /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input2/wake_gesture|1|0
   MirAndroidPlatformClientEglFlush:
     - "!/usr/bin/unity8,!/usr/bin/lomiri,all"
   MirAndroidPlatformServerEglSync:
@@ -28,7 +28,7 @@ bonito:
     - Landscape
     - InvertedLandscape
   DoubleTapToWake:
-    - /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/wake_gesture|1|0
+    - /sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input2/wake_gesture|1|0
   MirAndroidPlatformClientEglFlush:
     - "!/usr/bin/unity8,!/usr/bin/lomiri,all"
   MirAndroidPlatformServerEglSync:
