@@ -33,7 +33,7 @@
 
 using namespace std;
 
-static const string TOUCHSCREEN_RESET = "/sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input1/hw_reset";
+static const string TOUCHSCREEN_RESET = "/sys/devices/platform/soc/a84000.i2c/i2c-2/2-0020/input/input2/hw_reset";
 
 static bool sysfs_write(const char *path, const char *s)
 {
