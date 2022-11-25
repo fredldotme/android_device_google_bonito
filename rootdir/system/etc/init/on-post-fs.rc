@@ -46,6 +46,11 @@ on post-fs-data
     setprop sys.user.0.ce_available true
     setprop ctl.restart vendor.ramoops_sh
 
+service bootanim /system/bin/bootanimation_HALIUM_DISABLED
+    disabled
+    oneshot
+    override
+
 service ppd ppd_HALIUM_DISABLED
     override
 
