@@ -834,19 +834,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/etc/halium.prop:system/etc/halium.prop \
     $(LOCAL_PATH)/rootdir/system/halium/etc/deviceinfo/devices/halium.yaml:system/halium/etc/deviceinfo/devices/halium.yaml
 
-# Device hardware hacks (touchscreen hw_reset on DT2W)
-PRODUCT_PACKAGES += \
-    libpowerswitch
-
 # Ubuntu Touch additional properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ubuntu.widi.supported=1
-
-# Enable libpowerswitch (RQBalance controller)
-PRODUCT_PROPERTY_OVERRIDES += \
-    ubuntu.booster.dl=/system/lib64/libpowerswitch.so \
-    ubuntu.booster.enable=set_screen_on \
-    ubuntu.booster.disable=set_screen_off
 
 # Enable interactive drawer blur in unity8
 PRODUCT_PROPERTY_OVERRIDES += \
