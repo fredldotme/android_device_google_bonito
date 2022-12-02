@@ -832,7 +832,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/etc/rqbalance_config.xml:system/etc/rqbalance_config.xml \
     $(LOCAL_PATH)/rootdir/system/etc/msm_irqbalance.conf:system/etc/msm_irqbalance.conf \
     $(LOCAL_PATH)/rootdir/system/etc/halium.prop:system/etc/halium.prop \
-    $(LOCAL_PATH)/rootdir/system/halium/etc/deviceinfo/devices/halium.yaml:system/halium/etc/deviceinfo/devices/halium.yaml
+    $(LOCAL_PATH)/rootdir/system/halium/etc/deviceinfo/devices/halium.yaml:system/halium/etc/deviceinfo/devices/halium.yaml \
+    $(LOCAL_PATH)/rootdir/system/halium/usr/share/repowerd/device-configs/config-default.xml:system/halium/usr/share/repowerd/device-configs/config-default.xml
 
 # Ubuntu Touch additional properties
 PRODUCT_PROPERTY_OVERRIDES += \
